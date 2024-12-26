@@ -1,19 +1,6 @@
-# Указываем URL изображения
-$ImageUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Flag_of_Russia.svg/383px-Flag_of_Russia.svg.png"
+$client = new-object System.Net.WebClient
 
-# Путь для сохранения изображения
-$ImagePath = "$env:USERPROFILE\putin.jpg"
+$client.DownloadFile(\"https://tr3.cbsistatic.com/hub/i/2014/05/15/f8964afd-bd82-4e0e-bcbe-e927363dcdc1/3b858e39e2cf183b878f54cad0073a67/codedoge.jpg\" , \"doge.jpg\")
+reg add \"HKCU\\Control Panel\\Desktop\" /v WallPaper /d \"%USERPROFILE%\\doge.jpg\" /f
 
-# Скачиваем изображение
-$client = New-Object System.Net.WebClient
-$client.DownloadFile($ImageUrl, $ImagePath)
-
-# Изменяем настройки реестра для обоев
-$regKey = "HKCU\Control Panel\Desktop"
-$regValue = "Wallpaper"
-Set-ItemProperty -Path $regKey -Name $regValue -Value $ImagePath
-
-# Применяем изменения
-RUNDLL32.EXE USER32.DLL,UpdatePerUserSystemParameters
-
-Write-Host "Обои установлены: $ImagePath"
+RUNDLL32.EXE USER32.DLL,UpdatePerUserSystemParameters ,1 ,True
