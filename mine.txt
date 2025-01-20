@@ -1,0 +1,12 @@
+$TTL 3600
+@    IN    SOA   sliver.labnet.local. admin.labnet.local. (
+               2025011901 ; Serial
+               3600       ; Refresh
+               1800       ; Retry
+               1209600    ; Expire
+               3600 )     ; Minimum TTL
+
+     IN    NS    sliver.labnet.local.
+
+www    IN    A     <IP_адрес>
+api    IN    A     <IP_адрес>
